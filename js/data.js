@@ -62,6 +62,6 @@ function createCommentsToPhoto() {
   };
 }
 
-const generateSimilarDescriptionsArray = () => { Array.from({ length: DECSRIPTIONS_COUNT }).map((index) => createPhotoDescription(index + 1)); };
+const generateSimilarDescriptionsArray = () => { Array.from({ length: DECSRIPTIONS_COUNT }).map((value, index) => createPhotoDescription(index + 1)); };
 
 export { generateSimilarDescriptionsArray };
