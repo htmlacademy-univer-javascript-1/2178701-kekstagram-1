@@ -1,6 +1,6 @@
-// eslint-disable-next-line no-unused-vars
-import { generateSimilarDescriptionsArray } from './data.js';
 import './util.js';
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
+import { resultArray } from './data.js';
+import { showBigPicture } from './big-pictures-render.js';
 import { photosContainer } from './render.js';
 

@@ -1,14 +1,16 @@
-import { generateSimilarDescriptionsArray } from './data.js';
+import { resultArray } from './data.js';
+import { showBigPicture } from './big-pictures-render.js';
 
 const pictureTemplate = document.querySelector('#picture').content;
 const newPictureTemplate = pictureTemplate.querySelector('.picture');
 const photosContainer = document.querySelector('.pictures');
 
-const getPhotoElement = function ({ url, likes, comments }) {
+const getPhotoElement = function (photoObject) {
   const clonedPhoto = newPictureTemplate.cloneNode(true);
-  clonedPhoto.querySelector('img').src = url;
-  clonedPhoto.querySelector('pictures__likes').textContent = likes;
-  clonedPhoto.querySelector('.picture__comments').textContent = comments.length;
+  clonedPhoto.querySelector('.picture__img').src = photoObject.url;
+  clonedPhoto.querySelector('.picture__likes').textContent = photoObject.likes;
+  clonedPhoto.querySelector('.picture__comments').textContent = photoObject.comments.length;
+  clonedPhoto.addEventListener('click', () => showBigPicture(photoObject));
   return clonedPhoto;
 };
 
@@ -20,7 +22,5 @@ const renderPhotos = function (photos) {
   photosContainer.appendChild(fragment);
 };
 
-renderPhotos(generateSimilarDescriptionsArray);
+renderPhotos(resultArray);
 export { photosContainer };
-
-

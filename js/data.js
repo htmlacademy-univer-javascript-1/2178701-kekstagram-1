@@ -1,4 +1,4 @@
-import { getRandomArrayElements, calculateRandomNumber } from './util.js';
+import { getRandomArrayElements, calculateRandomNumber, getArrayObj} from './util.js';
 
 const NAMES = [
   'Иван',
@@ -40,7 +40,7 @@ const MESSAGES = [
 
 const DECSRIPTIONS_COUNT = 25;
 const LIKES_AMOUNT = { min: 15, max: 200 };
-const COUNT_COMMENTS = calculateRandomNumber(1, 10);
+//const COUNT_COMMENTS = calculateRandomNumber(1, 10);
 
 
 function createPhotoDescription(id) {
@@ -49,7 +49,7 @@ function createPhotoDescription(id) {
     url: `photos/${id}.jpg`,
     description: getRandomArrayElements(DECSRIPTIONS, 1),
     likes: calculateRandomNumber(LIKES_AMOUNT.min, LIKES_AMOUNT.max),
-    comments: Array.from({ length: COUNT_COMMENTS }, createCommentsToPhoto)
+    comments: getArrayObj(createCommentsToPhoto)
   };
 }
 
@@ -62,6 +62,8 @@ function createCommentsToPhoto() {
   };
 }
 
-const generateSimilarDescriptionsArray = () => { Array.from({ length: DECSRIPTIONS_COUNT }).map((value, index) => createPhotoDescription(index + 1)); };
+const generateSimilarDescriptionsArray = (len, func) => Array.from({length: len}).map((value, index) => func(index + 1));
 
-export { generateSimilarDescriptionsArray };
+const resultArray = generateSimilarDescriptionsArray(DECSRIPTIONS_COUNT, createPhotoDescription);
+
+export { resultArray };
