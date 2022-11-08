@@ -20,4 +20,8 @@ const getRandomArrayElements = (elements, countOfElements) => {
 // eslint-disable-next-line no-unused-vars
 const сhecksLengthOfString = (verifiableString, maxLenght) => verifiableString.length < maxLenght;
 
-export { getRandomArrayElements, calculateRandomNumber };
+const getArrayObj  = (func) => Array.from({length: calculateRandomNumber(1, 6)}, func);
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export { getRandomArrayElements, calculateRandomNumber, getArrayObj, isEscapeKey};
