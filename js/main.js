@@ -3,4 +3,5 @@ import './util.js';
 import { resultArray } from './data.js';
 import { showBigPicture } from './big-pictures-render.js';
 import { photosContainer } from './render.js';
+import './form.js';
 

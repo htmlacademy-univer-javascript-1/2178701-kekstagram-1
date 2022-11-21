@@ -11,28 +11,24 @@ const commentMessage = commentList.querySelector('.social__comment');
 const closeBigPhoto = function() {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
+  bigPictureClose.removeEventListener('click', closeBigPhoto);
+  document.removeEventListener('keydown', onBigPhotoCloseEscapePress);
 };
 
-const onBigPhotoCloseClick = function (){
-  bigPictureClose.removeEventListener('click', onBigPhotoCloseClick);
-  closeBigPhoto();
-};
-
-const onBigPhotoCloseEscapePress = function(evt){
+function onBigPhotoCloseEscapePress (evt){
   if (isEscapeKey(evt)){
     evt.preventDefault();
     closeBigPhoto();
-    document.removeEventListener('keydown', onBigPhotoCloseEscapePress);
   }
-};
+}
 
-const createComment = function (comment) {
+function createComment(comment) {
   const commentElement = commentMessage.cloneNode(true);
   commentElement.querySelector('.social__picture').src = comment.avatar;
   commentElement.querySelector('.social__picture').alt = comment.name;
   commentElement.querySelector('.social__text').textContent = comment.message;
   return commentElement;
-};
+}
 
 const fillComments = function (comments) {
   const fragment = document.createDocumentFragment();
@@ -54,7 +50,7 @@ const showBigPicture = function (photo) {
   commentsLoader.classList.add('hidden');
   commentList.innerHTML = '';
   fillComments(photo.comments);
-  bigPictureClose.addEventListener('click', onBigPhotoCloseClick);
+  bigPictureClose.addEventListener('click', closeBigPhoto);
   document.addEventListener('keydown', onBigPhotoCloseEscapePress);
 };
 
