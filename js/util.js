@@ -5,16 +5,16 @@ function calculateRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const getRandomArrayElements = (elements, countOfElements) => {
-  if (countOfElements === 2) {
-    const firstElement = elements[calculateRandomNumber(0, elements.length - 1)];
-    let secondElement = elements[calculateRandomNumber(0, elements.length - 1)];
-    while (firstElement === secondElement) {
-      secondElement = elements[calculateRandomNumber(0, elements.length - 1)];
-    }
-    return `${firstElement} ${secondElement}`;
+
+const getRandomElementsArray = (arr, count) => {
+  const copiedArray = arr.slice();
+  const newArray = [];
+  for (let i = 0; i < count; i++) {
+    const randomIndex = calculateRandomNumber(0, copiedArray.length - 1);
+    newArray.push(copiedArray[randomIndex]);
+    copiedArray.splice(randomIndex, 1);
   }
-  return elements[calculateRandomNumber(0, elements.length - 1)];
+  return newArray;
 };
 
 // eslint-disable-next-line no-unused-vars
@@ -24,4 +24,13 @@ const getArrayObj  = (func) => Array.from({length: calculateRandomNumber(1, 6)},
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getRandomArrayElements, calculateRandomNumber, getArrayObj, isEscapeKey};
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+
+export { calculateRandomNumber, getArrayObj, isEscapeKey, debounce, getRandomElementsArray};

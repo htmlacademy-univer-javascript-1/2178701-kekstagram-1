@@ -1,8 +1,8 @@
 import './util.js';
 /* eslint-disable no-unused-vars */
 import { getData } from './api.js';
-import { renderPhotos } from './render.js';
 import './form.js';
+import { showFilteredPhotos } from './image-filter.js';
 import { initEffects } from './img-effects.js';
 initEffects();
 
@@ -17,5 +17,5 @@ function showError(errorMessage) {
   }, 5000);
 }
 
-getData(renderPhotos, showError);
+getData(showFilteredPhotos, showError);
 
