@@ -61,6 +61,8 @@ inputPhotos.addEventListener('change', function() {
     formOverlay.classList.remove('hidden');
     sliderWrapper.classList.add('hidden');
     addEventListenerToForm();
+    const file = inputPhotos.files[0];
+    imgPreview.src = URL.createObjectURL(file);
   }
 });
 
