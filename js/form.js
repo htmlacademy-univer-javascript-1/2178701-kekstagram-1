@@ -2,7 +2,7 @@ import { isEscapeKey } from './util.js';
 import { validateTheForm } from './validate-form.js';
 import {onScaleButtonClick, scaleValue} from './img-scale-count.js';
 import { onFilterButtonChange, sliderWrapper } from './img-effects.js';
-const effectList = document.querySelector('.effects__list');
+const effectsList = document.querySelector('.effects__list');
 const form = document.querySelector('.img-upload__form');
 const scaleContainer = document.querySelector('.img-upload__scale');
 const submitButton = document.querySelector('#upload-submit');
@@ -15,13 +15,12 @@ const textHashtags = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
 const imgPreview = document.querySelector('.img-upload__preview').querySelector('img');
 
-
 function removeEventListenerFromForm (){
   formCloseButton.removeEventListener('click', closeForm);
   document.removeEventListener('keydown', onFormCloseEscapePress);
   form.removeEventListener('submit', validateTheForm);
   scaleContainer.removeEventListener('click', onScaleButtonClick);
-  effectList.removeEventListener('change', onFilterButtonChange);
+  effectsList.removeEventListener('change', onFilterButtonChange);
 }
 
 function resetFormInputValues(){
@@ -52,7 +51,7 @@ function addEventListenerToForm (){
   document.addEventListener('keydown', onFormCloseEscapePress);
   form.addEventListener('submit', validateTheForm);
   scaleContainer.addEventListener('click', onScaleButtonClick);
-  effectList.addEventListener('change', onFilterButtonChange);
+  effectsList.addEventListener('change', onFilterButtonChange);
 }
 
 inputPhotos.addEventListener('change', function() {
@@ -117,11 +116,11 @@ function createMessageBlock(isError) {
   document.addEventListener('keydown', (evt) => onMessageEscKeydown(evt, message, abortController), { signal: abortController.signal });
 }
 
-function successPost() {
+function getSuccessPost() {
   createMessageBlock(false);
 }
-function failPost() {
+function getFailPost() {
   createMessageBlock(true);
 }
 
-export {imgPreview, blockSubmitButton, successPost, failPost, unblockSubmitButton};
+export {imgPreview, blockSubmitButton, getSuccessPost, getFailPost, unblockSubmitButton};
