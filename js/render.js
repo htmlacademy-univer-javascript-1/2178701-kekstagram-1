@@ -1,4 +1,4 @@
-import { resultArray } from './data.js';
+
 import { showBigPicture } from './big-pictures-render.js';
 
 const pictureTemplate = document.querySelector('#picture').content;
@@ -22,5 +22,4 @@ const renderPhotos = function (photos) {
   photosContainer.appendChild(fragment);
 };
 
-renderPhotos(resultArray);
-export { photosContainer };
+export { renderPhotos };

@@ -1,3 +1,5 @@
+import { sendData } from './api.js';
+import { blockSubmitButton, successPost, failPost, unblockSubmitButton } from './form.js';
 const formUploadPicture = document.querySelector('#upload-select-image');
 const textHashtags = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
@@ -40,8 +42,10 @@ function validateDescriptions(value){
 }
 
 function validateTheForm(evt){
-  if (!pristine.validate()){
-    evt.prevetDefault();
+  evt.preventDefault();
+  if (pristine.validate()){
+    blockSubmitButton();
+    sendData(successPost, failPost, new FormData(evt.target), unblockSubmitButton);
   }
 }
 
