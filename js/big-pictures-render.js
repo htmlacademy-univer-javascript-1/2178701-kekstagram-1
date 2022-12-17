@@ -3,8 +3,8 @@ const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 const loaderCommentsButton = document.querySelector('.comments-loader');
-const commentList = document.querySelector('.social__comments');
-const commentTemplate = commentList.querySelector('.social__comment');
+const commentsList = document.querySelector('.social__comments');
+const commentTemplate = commentsList.querySelector('.social__comment');
 const socialCommentCount = document.querySelector('.social__comment-count');
 let commentsAmount = 0;
 const MAX_SIZE_COMMENTS = 5;
@@ -35,7 +35,7 @@ function createComment(comment) {
 const fillComments = function (comments) {
   comments.slice(commentsAmount, commentsAmount + MAX_SIZE_COMMENTS).forEach((comment) =>{
     const newComment = createComment(comment);
-    commentList.appendChild(newComment);
+    commentsList.appendChild(newComment);
     commentsAmount++;
   });
   socialCommentCount.innerHTML = `${commentsAmount} из <span class="comments-count">${comments.length}</span> комментариев`;
@@ -55,7 +55,7 @@ const showBigPicture = function (photo) {
   bigPicture.querySelector('.social__caption').textContent = photo.description;
   bigPictureClose.addEventListener('click', closeBigPhoto);
   document.addEventListener('keydown', onBigPhotoCloseEscapePress);
-  commentList.innerHTML = '';
+  commentsList.innerHTML = '';
   fillComments(photo.comments);
   loaderCommentsButton.onclick = () => fillComments(photo.comments);
 };

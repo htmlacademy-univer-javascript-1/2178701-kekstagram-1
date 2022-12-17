@@ -10,16 +10,16 @@ const randomFilter = document.querySelector('#filter-random');
 const discussedFilter = document.querySelector('#filter-discussed');
 
 const comparePhotosByComments = (photoA, photoB) => photoB.comments.length - photoA.comments.length;
-const getSortedPhoto = (photo) => photo.slice().sort(comparePhotosByComments);
+const getSortedPhotos = (photos) => photos.slice().sort(comparePhotosByComments);
 
 const removePhotos = () => {
-  const picture = document.querySelectorAll('.picture');
-  picture.forEach((photo) => {
+  const pictures = document.querySelectorAll('.picture');
+  pictures.forEach((photo) => {
     photo.remove();
   });
 };
 
-const changePhoto = (array, button) => {
+const changePhotos = (array, button) => {
   removePhotos();
   const active = document.querySelector('.img-filters__button--active');
   active.classList.remove('img-filters__button--active');
@@ -31,13 +31,13 @@ const showFilteredPhotos = (photos) => {
   renderPhotos(photos);
   filterSection.classList.remove('img-filters--inactive');
   defaultfFilter.addEventListener('click', debounce(() => {
-    changePhoto(photos, defaultfFilter);
+    changePhotos(photos, defaultfFilter);
   }));
   randomFilter.addEventListener('click', debounce(() => {
-    changePhoto(getRandomElementsArray(photos, RANDOM_PHOTOS_AMOUNT), randomFilter);
+    changePhotos(getRandomElementsArray(photos, RANDOM_PHOTOS_AMOUNT), randomFilter);
   }));
   discussedFilter.addEventListener('click', debounce(() => {
-    changePhoto(getSortedPhoto(photos), discussedFilter);
+    changePhotos(getSortedPhotos(photos), discussedFilter);
   }));
 };
 

@@ -1,10 +1,10 @@
 import { imgPreview } from './form.js';
-
-const scaleValue = document.querySelector('.scale__control--value');
-scaleValue.value = `${100}%`;
 const MIN_SCALE_VALUE = 25;
 const MAX_SCALE_VALUE = 100;
 const STEP_SCALE_VALUE = 25;
+
+const scaleValue = document.querySelector('.scale__control--value');
+scaleValue.value = `${100}%`;
 
 function onScaleButtonClick (evt) {
   const scaleInput = Number.parseInt(scaleValue.value, 10);
